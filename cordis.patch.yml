@@ -1,0 +1,28 @@
+# DSH Loader patch：把 QQ 邮箱插件注册为一个 Host 插件。
+# config 里只放非敏感的运行时参数；邮箱授权码（密码）走 credentials 服务，
+# 不写在这里，避免明文落盘。
+- insert:
+    - id: qq-mail-dsh
+      name: '@local/qq-mail-dsh'
+      config:
+        # 你的 QQ 邮箱完整地址（也是 IMAP/SMTP 登录名）
+        account: ''
+        # IMAP 收信服务器（QQ 官方）
+        imapHost: 'imap.qq.com'
+        imapPort: 993
+        imapSecure: true
+        # SMTP 发信服务器（QQ 官方）
+        smtpHost: 'smtp.qq.com'
+        smtpPort: 465
+        smtpSecure: true
+        # 轮询新邮件的间隔（毫秒），默认 60 秒
+        pollIntervalMs: 60000
+        # 是否把收到的新邮件转发成 DSH 会话消息（true/false）
+        forwardInboundToDsh: true
+        # 定时投递任务：是否启用“把最近会话内容汇总发到邮箱”（默认关闭；面板里可随时一键开/关）
+        scheduledDigestEnabled: false
+        # 定时投递的 cron 风格时间：每天 21:00（仅作展示，实际用内部定时器）
+        scheduledDigestHour: 21
+        scheduledDigestMinute: 0
+        # 摘要邮件投递目标；留空则用 account 自身
+        digestTarget: ''

@@ -1,0 +1,40 @@
+{
+  "name": "@local/qq-mail-dsh",
+  "version": "0.2.0",
+  "type": "module",
+  "description": "QQ 邮箱收发管理 + 与 DSH 双向消息互传 + 定时会话投递到邮箱的自动化插件（含登录/绑定页）",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "src/**/*.js",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node --test"
+  },
+  "dependencies": {
+    "imapflow": "^2.11.0",
+    "mailparser": "^3.14.2",
+    "nodemailer": "^6.10.0"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": []
+    }
+  },
+  "_note": "imapflow/mailparser/nodemailer 是真实收发信依赖；发布后由安装器按 dependencies 安装。发信走 nodemailer，收信/检索走 imapflow + mailparser。"
+}
