@@ -151,7 +151,7 @@ _arm(task) {
 
 ### 初始化（首次使用）
 
-1. **安装插件**：通过「Open Plugin Market」搜索 `qq-mail` 一键安装；
+1. **安装插件**：通过npm官方源搜索 `dsh-qq-mail@0.2.0`一键安装，「Open Plugin Market」正在上架中，同样可搜索名称一键安装；
    或 `plugin_manager install_bundle`，target 传本插件目录绝对路径
    （若 profile 依赖树解析失败装不上，见文末「本机安装记录」的手动挂载法）。
 2. **面板登录绑定（核心）**：打开 DSH 左侧「QQ 邮箱」面板，未绑定会直接进入绑定页：
@@ -276,23 +276,11 @@ New-Item -ItemType Junction -Path "$dst\qq-mail-dsh" `
 
 ---
 
-## 八、发布渠道推荐
+## 八、其他信息
 
 本插件是标准 DSH Cordis 静态插件，`package.json` 已声明 `dsh.bundle.patch` 与
 `dsh.client` 钩子、`locale/*.json` 含 `meta.title/description`、`icon.svg` 就绪，
-打包后即可发布。推荐顺序：
-
-1. **Open Plugin Market（首选）** — DSH 官方插件市场，`https://dshopen.org/index.json`。
-   用户在 DSH 插件管理器里能直接搜索安装，体验最顺。
-   - 打包：`npm pack`（生成 `@local-qq-mail-dsh-0.2.0.tgz`），或按市场要求的目录/压缩包上传。
-   - 提交：去 dshopen.org 看上架规范（含 metadata、图标尺寸、依赖说明），按页面提示填表上传。
-   - 注意：市场可能按 `dependencies` 自动安装 `imapflow` / `nodemailer` / `mailparser`，
-     所以 `package.json` 已把它们写进 `dependencies`。
-2. **GitHub Release（次选）** — 把仓库（含 `node_modules` 之外的全部源码、locale、icon）
-   打包成 release 资产，用户用 `plugin_manager install_bundle` + 仓库/压缩包地址安装。
-   适合想看源码、自己改的同学。
-3. **npm（备选）** — 发布到 npm（`npm publish`），让 `install_bundle` 能按包名拉取。
-   包名建议用作用域避免冲突（如 `@你的名/qq-mail-dsh`）。
+打包后即可发布。
 
 > 发布前自检清单：
 > - `package.json` 的 `version` 已递增（当前 `0.2.0`）；
