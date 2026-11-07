@@ -1,0 +1,11 @@
+# 本地依赖（发布时不进仓库）
+node_modules/
+
+# 运行时本地数据（含用户私人账号/授权码，绝不入库）
+state.json
+.credentials.yaml
+
+# 杂项
+*.log
+.DS_Store
+*.tgz
